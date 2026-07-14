@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>APP</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEONUS — AI Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a24; --surface:#20202c; --surface-2:#2a2a38;
+    --fg:#f2efe8; --muted:#9a978d; --border:rgba(180,170,140,.18);
+    --gold:#c9a961; --gold-soft:#e2c98a;
+    --gradient-gold:linear-gradient(135deg,#e2c98a,#b8944a);
+    --gradient-hero:radial-gradient(ellipse at top,#2d2d3f 0%,#141420 60%);
+    --shadow-card:0 12px 40px -12px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;border-color:var(--border)}
+  html,body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;letter-spacing:-.02em;font-weight:500;line-height:1.1}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .gold{color:var(--gold)}
+  .text-gradient-gold{background:var(--gradient-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .muted{color:var(--muted)}
+  .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.4em;color:var(--gold)}
+
+  /* Header */
+  header.site{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:rgba(26,26,36,.7);backdrop-filter:blur(20px)}
+  header.site .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-mark{width:32px;height:32px;border-radius:4px;background:var(--gradient-gold);display:grid;place-items:center;color:#1a1a24;font-family:'Fraunces',serif;font-weight:600;font-size:18px}
+  .logo-name{font-family:'Fraunces',serif;font-size:16px;letter-spacing:.05em}
+  .logo-sub{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+  nav.main{display:flex;gap:32px;font-size:14px;color:var(--muted)}
+  nav.main a{transition:color .2s}
+  nav.main a:hover,nav.main a.active{color:var(--fg)}
+  .btn-gold{display:inline-flex;align-items:center;border:1px solid rgba(201,169,97,.4);padding:8px 16px;border-radius:4px;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);transition:background .2s}
+  .btn-gold:hover{background:rgba(201,169,97,.1)}
+  .btn-gold-solid{background:var(--gold);color:#1a1a24;border:0;padding:12px 24px;border-radius:4px;font-size:11px;text-transform:uppercase;letter-spacing:.2em}
+  @media (max-width:768px){nav.main{display:none}}
+
+  /* Hero */
+  .hero{background:var(--gradient-hero);padding:96px 0 128px;position:relative;overflow:hidden}
+  .hero h1{font-size:clamp(48px,7vw,88px);margin-top:24px}
+  .hero p.lead{margin-top:24px;max-width:560px;color:var(--muted);font-size:17px;line-height:1.6}
+  .hero .cta{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* Sections */
+  section{padding:80px 0}
+  .section-title{font-size:clamp(32px,4vw,48px)}
+
+  /* Grid of cards */
+  .grid{display:grid;gap:32px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));margin-top:48px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card)}
+  .card .thumb{aspect-ratio:4/3;background-size:cover;background-position:center;position:relative}
+  .card .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.2em;padding:6px 10px;border-radius:2px}
+  .card .body{padding:20px}
+  .card h3{font-size:22px;margin-bottom:4px}
+  .card .price{color:var(--gold);font-family:'Fraunces',serif;font-size:24px;margin-top:8px}
+  .card .meta{color:var(--muted);font-size:13px;margin-top:8px;display:flex;gap:12px}
+
+  /* Process */
+  .steps{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:48px}
+  .step{padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+  .step .num{font-family:'Fraunces',serif;font-size:40px;color:var(--gold);opacity:.6}
+  .step h3{font-size:20px;margin:12px 0 8px}
+  .step p{color:var(--muted);font-size:14px;line-height:1.6}
+
+  /* Filters */
+  .filters{display:flex;flex-wrap:wrap;gap:16px;align-items:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;margin-top:32px}
+  .filters input{flex:1;min-width:240px;background:transparent;border:0;outline:none;color:var(--fg);font-size:14px;padding:8px 0}
+  .filters input::placeholder{color:rgba(154,151,141,.6)}
+  .chip{padding:8px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.2em;border-radius:4px;border:1px solid var(--border);color:var(--muted);transition:all .2s}
+  .chip:hover{color:var(--fg)}
+  .chip.active{background:var(--gold);color:#1a1a24;border-color:var(--gold)}
+
+  /* Footer */
+  footer.site{margin-top:80px;border-top:1px solid var(--border);padding:48px 0}
+  footer.site .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
+  footer.site .copy{color:var(--muted);font-size:12px}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;margin-bottom:32px;border-bottom:1px solid var(--border)}
+  .tab{padding:12px 20px;font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);border-bottom:2px solid transparent}
+  .tab.active{color:var(--gold);border-color:var(--gold)}
+  .view{display:none}
+  .view.active{display:block}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container row">
+    <a class="logo" href="#" onclick="showView('home');return false">
+      <div class="logo-mark">A</div>
+      <div>
+        <div class="logo-name">AEONUS</div>
+        <div class="logo-sub">AI Real Estate</div>
+      </div>
+    </a>
+    <nav class="main">
+      <a href="#" onclick="showView('browse');return false" data-nav="browse">Browse</a>
+      <a href="#" onclick="showView('list');return false" data-nav="list">Sell</a>
+      <a href="#" onclick="showView('how');return false" data-nav="how">How it works</a>
+    </nav>
+    <a class="btn-gold" href="#" onclick="showView('list');return false">List a Home</a>
+  </div>
+</header>
+
+<!-- HOME -->
+<div class="view active" id="view-home">
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">— The Transaction Operating System</div>
+      <h1>Buy and sell your home <span class="text-gradient-gold">without an agent.</span></h1>
+      <p class="lead">AEONUS uses AI to handle listing, negotiation, escrow, and closing. Save up to 90% on commission — the machine does the paperwork.</p>
+      <div class="cta">
+        <a class="btn-gold-solid" href="#" onclick="showView('browse');return false">Browse Homes</a>
+        <a class="btn-gold" href="#" onclick="showView('list');return false">List Your Home</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="eyebrow">— How it works</div>
+      <h2 class="section-title" style="margin-top:12px">Four layers. Zero agents.</h2>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>List</h3><p>Upload photos and specs. AI writes the listing, prices it, and syndicates to MLS.</p></div>
+        <div class="step"><div class="num">02</div><h3>Match</h3><p>Verified buyers submit offers through the AI negotiator with escrow-ready docs.</p></div>
+        <div class="step"><div class="num">03</div><h3>Negotiate</h3><p>AI agents on both sides handle counter-offers, contingencies, and timelines.</p></div>
+        <div class="step"><div class="num">04</div><h3>Close</h3><p>Automated escrow, e-sign, and title work. Wire, keys, and done.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="eyebrow">— Featured</div>
+      <h2 class="section-title" style="margin-top:12px">Live listings</h2>
+      <div class="grid" id="featured-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- BROWSE -->
+<div class="view" id="view-browse">
+  <section>
+    <div class="container">
+      <div class="eyebrow">— <span id="count">6</span> live listings</div>
+      <h1 class="section-title" style="margin-top:12px">Homes on AEONUS</h1>
+      <p class="muted" style="margin-top:16px;max-width:500px">Every listing is direct from the seller. No listing agents, no buyer's agents — the AI handles the transaction.</p>
+
+      <div class="filters">
+        <input id="q" placeholder="Search by address, city, or zip" />
+        <div style="display:flex;gap:4px" id="type-filters">
+          <button class="chip active" data-type="All">All</button>
+          <button class="chip" data-type="House">House</button>
+          <button class="chip" data-type="Condo">Condo</button>
+          <button class="chip" data-type="Townhouse">Townhouse</button>
+        </div>
+      </div>
+
+      <div class="grid" id="browse-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- LIST WIZARD -->
+<div class="view" id="view-list">
+  <section>
+    <div class="container" style="max-width:720px">
+      <div class="eyebrow">— List your home</div>
+      <h1 class="section-title" style="margin-top:12px">AI does the paperwork.</h1>
+      <p class="muted" style="margin-top:16px">Three steps. About 4 minutes. No agent required.</p>
+
+      <div class="steps" style="margin-top:48px">
+        <div class="step"><div class="num">01</div><h3>Property</h3><p>Address, beds/baths, and photos. AI pulls comps automatically.</p></div>
+        <div class="step"><div class="num">02</div><h3>Price</h3><p>Accept the AI valuation or set your own. Live buyer demand shown.</p></div>
+        <div class="step"><div class="num">03</div><h3>Publish</h3><p>Listing goes live on AEONUS and syndicated MLS partners.</p></div>
+      </div>
+
+      <div style="margin-top:48px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:6px">
+        <h3 style="font-size:24px">Ready to start?</h3>
+        <p class="muted" style="margin-top:8px">Demo build — the real wizard is in the full app.</p>
+        <button class="btn-gold-solid" style="margin-top:24px" onclick="alert('Demo — full wizard in production build.')">Start Listing</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HOW -->
+<div class="view" id="view-how">
+  <section>
+    <div class="container">
+      <div class="eyebrow">— How it works</div>
+      <h1 class="section-title" style="margin-top:12px">The Transaction OS.</h1>
+      <p class="muted" style="margin-top:16px;max-width:600px">Four AI layers replace what a traditional agent does — from listing to close — while a human broker of record signs off on regulated moments.</p>
+      <div class="steps">
+        <div class="step"><div class="num">L1</div><h3>Listing AI</h3><p>Auto-drafts descriptions, prices from live comps, generates disclosures.</p></div>
+        <div class="step"><div class="num">L2</div><h3>Match AI</h3><p>Verifies buyer funds, ranks offer strength, filters out tire kickers.</p></div>
+        <div class="step"><div class="num">L3</div><h3>Negotiation AI</h3><p>Counters on price, contingencies, close date. Explains every move in plain English.</p></div>
+        <div class="step"><div class="num">L4</div><h3>Escrow AI</h3><p>Automates checklist, chases signatures, coordinates title & wire.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site">
+  <div class="container row">
+    <div>
+      <div class="logo-name" style="font-size:18px">AEONUS</div>
+      <div class="logo-sub" style="margin-top:4px">The Transaction Operating System</div>
+    </div>
+    <div class="copy">© 2026 AEONUS AI. Los Angeles, California. Not a licensed brokerage.</div>
+  </div>
+</footer>
+
+<script>
+const properties = [
+  {id:'wilshire',address:'3810 Wilshire Blvd #605',city:'Los Angeles, CA',price:799000,beds:2,baths:2,sqft:1420,type:'Condo',status:'Negotiation',image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80'},
+  {id:'saint',address:'497 N Saint Andrews Pl',city:'Los Angeles, CA',price:1690000,beds:4,baths:3,sqft:2380,type:'House',status:'Active',image:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'},
+  {id:'east90',address:'838 E 90th St',city:'Los Angeles, CA',price:649000,beds:3,baths:2,sqft:1180,type:'House',status:'Escrow',image:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80'},
+  {id:'brentwood',address:'11750 Wilshire Blvd #1804',city:'Los Angeles, CA',price:1290000,beds:2,baths:2.5,sqft:1780,type:'Condo',status:'Active',image:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80'},
+  {id:'silver',address:'2210 Micheltorena St',city:'Los Angeles, CA',price:1495000,beds:3,baths:2,sqft:1960,type:'House',status:'Negotiation',image:'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=800&q=80'},
+  {id:'ktown',address:'678 S Kingsley Dr #3',city:'Los Angeles, CA',price:895000,beds:3,baths:3,sqft:1640,type:'Townhouse',status:'Active',image:'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80'}
+];
+
+const fmt = n => n>=1e6 ? `$${(n/1e6).toFixed(n%1e6===0?0:2)}M` : `$${(n/1e3).toFixed(0)}K`;
+
+function cardHTML(p){
+  return `<div class="card" onclick="alert('${p.address} — ${fmt(p.price)}\\n\\n${p.beds} bd · ${p.baths} ba · ${p.sqft} sqft\\nStatus: ${p.status}')">
+    <div class="thumb" style="background-image:url('${p.image}')"><div class="badge">${p.status}</div></div>
+    <div class="body">
+      <h3>${p.address}</h3>
+      <div class="muted" style="font-size:13px">${p.city}</div>
+      <div class="price">${fmt(p.price)}</div>
+      <div class="meta"><span>${p.beds} bd</span><span>${p.baths} ba</span><span>${p.sqft.toLocaleString()} sqft</span></div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('featured-grid').innerHTML = properties.slice(0,3).map(cardHTML).join('');
+
+let currentType='All', currentQ='';
+function renderBrowse(){
+  const list = properties.filter(p=>{
+    if(currentType!=='All' && p.type!==currentType) return false;
+    if(currentQ && !`${p.address} ${p.city}`.toLowerCase().includes(currentQ.toLowerCase())) return false;
+    return true;
+  });
+  document.getElementById('count').textContent = list.length;
+  document.getElementById('browse-grid').innerHTML = list.length
+    ? list.map(cardHTML).join('')
+    : '<div class="muted" style="padding:96px 0;text-align:center;grid-column:1/-1">No listings match those filters.</div>';
+}
+renderBrowse();
+
+document.getElementById('q').addEventListener('input',e=>{currentQ=e.target.value;renderBrowse()});
+document.querySelectorAll('#type-filters .chip').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('#type-filters .chip').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    currentType=b.dataset.type;
+    renderBrowse();
+  });
+});
+
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
